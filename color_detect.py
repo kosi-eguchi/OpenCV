@@ -109,37 +109,37 @@ gray = cv2.bitwise_and(image, image, mask = gray_mask)
 #-------------------------------------------------------------------------------------------------------------------------------#
 # user input (THIS PART DOESN'T WORK AND IDK WHY...ONLY SHOWS GREEN)
 #"""
-color_search = input("What color are you looking for: ")
+color_search = input(str("What color are you looking for: "))
 print(color_search)
 
-if color_search == "green" or "Green":
+if color_search == "green" or color_search == "Green":
     cv2.imshow("Green Mask", green_mask)
     cv2.imshow("Green", green)
-elif color_search == "red" or "Red":
+elif color_search == "red" or  color_search == "Red":
     cv2.imshow("Red 1 Mask", red1_mask)
     cv2.imshow("Red 1", red1)
-elif color_search == "red" or "Red":
+elif color_search == "red" or  color_search == "Red":
     cv2.imshow("Red 2 Mask", red2_mask)
     cv2.imshow("Red 2", red2)
-elif color_search == "blue" or "Blue":
+elif color_search == "blue" or  color_search == "Blue":
     cv2.imshow("Blue Mask", blue_mask)
     cv2.imshow("Blue", blue)
-elif color_search == "black" or "Black":
+elif color_search == "black" or  color_search == "Black":
     cv2.imshow("Black Mask", black_mask)
     cv2.imshow("Black", black)
-elif color_search == "white" or "White":
+elif color_search == "white" or color_search == "White":
     cv2.imshow("White Mask", white_mask)
     cv2.imshow("White", white)
-elif color_search == "yellow" or "Yellow":
+elif color_search == "yellow" or color_search == "Yellow":
     cv2.imshow("Yellow Mask", yellow_mask)
     cv2.imshow("Yellow", yellow)
-elif color_search == "purple" or "Purple":  
+elif color_search == "purple" or color_search == "Purple":  
     cv2.imshow("Purple Mask", purple_mask)
     cv2.imshow("Purple", purple)
-elif color_search == "orange" or "Orange":
+elif color_search == "orange" or  color_search == "Orange":
     cv2.imshow("Orange Mask", orange_mask)
     cv2.imshow("Orange", orange)
-elif color_search == "gray" or "Gray":
+elif color_search == "gray" or  color_search == "Gray":
     cv2.imshow("Gray Mask", gray_mask)
     cv2.imshow("Gray", gray)
 #"""
