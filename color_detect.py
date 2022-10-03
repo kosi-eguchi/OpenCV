@@ -3,6 +3,24 @@ import numpy as np
 import argparse
 import cv2
 
+# red green color bindness, averaging red and green values to find the inbetween to understand the visual identity being seen and differentiesate with the "noraml"
+# test via wiki look up color blindnesss using the "are you colorblind" test"
+
+# use selenium
+import selenium
+
+
+# pickling ex.:
+def saveData(instance):
+    with open('swindle.dat', 'wb') as outfile:
+        pickle.dump(instance, outfile)
+
+def loadData(instance):
+    with open('swindle.dat', 'rb') as infile:
+        instance = pickle.load(infile)
+    return instance
+
+
 # constructing and using arugment parse (chpt. 3)
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", required = True, help = "Path to image")
