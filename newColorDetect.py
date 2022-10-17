@@ -49,6 +49,31 @@ def read_file():
 def color_compare(data):
     named_list = read_file()
     compare_list = []
+
+    for col in data:
+        diff_list = []
+        pic_b = int(col[0])
+        pic_g = int(col[1])
+        pic_r = int(col[2])
+        for color in named_list:
+            diff = 0
+            diff = abs(pic_r - int(color[2]))
+            diff += abs(pic_g - int(color[3]))
+            diff += abs(pic_b - int(color[4]))
+            diff_list.append(diff)
+        diff = min(diff_list)
+        # print(diff)
+        index = diff_list.index(diff)
+        # print(index)
+        name = named_list[index][0]
+        hex = named_list[index][1]
+        r_named = int(named_list[index][2])
+        g_named = int(named_list[index][3])
+        b_named = int(named_list[index][4])
+        compare_list.append([name, hex, r_named, g_named, b_named])
+
+
+    """
     for col in data:
         # print(col)
         diff_r = 256
@@ -84,12 +109,13 @@ def color_compare(data):
         print("diff: %i, %i, %i" % (diff_r, diff_g, diff_b))
         print("named: %s, %s, %i, %i, %i" % (name, hex, r_named, g_named, b_named))
         compare_list.append([name, hex, r_named, g_named, b_named])
+    """
     val = 1
     for cols in compare_list:
         print("%i. Name: %s, Hex Value: %s, R: %i, G: %i, B: %i" % (val, cols[0], cols[1], cols[2], cols[3], cols[4]))
         val += 1
     return compare_list
-
+    
             
 
 def color_extrapolate(image, data):
@@ -177,7 +203,7 @@ def main():
     # cv2.waitKey(0)
 
     data = color_palette(image)
-    #print(data)
+    print(data)
     frequent = color_compare(data)
     
     # color_extrapolate(image, data)
