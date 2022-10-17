@@ -68,7 +68,7 @@ def color_compare(data):
         r_named = int(named_list[index][3])
         g_named = int(named_list[index][4])
         b_named = int(named_list[index][5])
-        compare_list.append([category, name, hex, r_named, g_named, b_named])   `       `
+        compare_list.append([category, name, hex, r_named, g_named, b_named])
     val = 1
     for cols in compare_list:
         print("%i. Name: %s, Hex Value: %s, R: %i, G: %i, B: %i, Category: %s" % (val, cols[1], cols[2], cols[3], cols[4], cols[5], cols[0]))
