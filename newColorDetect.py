@@ -59,9 +59,9 @@ def color_compare(data):
         r_named = 256
         g_named = 256
         b_named = 256
-        pic_r = int(col[0])
+        pic_b = int(col[0])
         pic_g = int(col[1])
-        pic_b = int(col[2])
+        pic_r = int(col[2])
         for color in named_list:
             new_name = color[0]
             new_hex = color[1]
