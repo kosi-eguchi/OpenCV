@@ -84,7 +84,11 @@ def color_compare(data):
         print("diff: %i, %i, %i" % (diff_r, diff_g, diff_b))
         print("named: %s, %s, %i, %i, %i" % (name, hex, r_named, g_named, b_named))
         compare_list.append([name, hex, r_named, g_named, b_named])
-    print(compare_list)
+    val = 1
+    for cols in compare_list:
+        print("%i. Name: %s, Hex Value: %s, R: %i, G: %i, B: %i" % (val, cols[0], cols[1], cols[2], cols[3], cols[4]))
+        val += 1
+    return compare_list
 
             
 
@@ -173,8 +177,9 @@ def main():
     # cv2.waitKey(0)
 
     data = color_palette(image)
-    print(data)
-    color_compare(data)
+    #print(data)
+    frequent = color_compare(data)
+    
     # color_extrapolate(image, data)
 
 main()
