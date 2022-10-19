@@ -30,7 +30,7 @@ def color_palette(image):
     color_data = clt.cluster_centers_
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     palImg = cv2.cvtColor(palette(clt_1), cv2.COLOR_BGR2RGB)
-    show_img_compar(image, palImg)
+    #show_img_compar(image, palImg) 
     return(color_data)
  
 def read_file():
@@ -47,6 +47,10 @@ def color_compare(data):
     named_list = read_file()
     compare_list = []
 
+    RdiffTotal = 0
+    GdiffTotal = 0
+    BdiffTotal = 0
+
     for col in data:
         diff_list = []
         pic_b = int(col[0])
@@ -54,9 +58,22 @@ def color_compare(data):
         pic_r = int(col[2])
         for color in named_list:
             diff = 0
-            diff = abs(pic_r - int(color[3]))
-            diff += abs(pic_g - int(color[4]))
-            diff += abs(pic_b - int(color[5]))
+            Rdiff = abs(pic_r - int(color[3]))
+            diff += Rdiff
+            if Rdiff > RdiffTotal:
+                RdiffTotal = Rdiff
+
+            Gdiff = abs(pic_g - int(color[4]))
+            diff += Gdiff
+            if Gdiff > GdiffTotal:
+                GdiffTotal = Gdiff
+
+            Bdiff = abs(pic_b - int(color[5]))
+            diff += Bdiff
+            if Bdiff > BdiffTotal:
+                BdiffTotal = Bdiff
+
+
             diff_list.append(diff)
         diff = min(diff_list)
         # print(diff)
@@ -71,9 +88,9 @@ def color_compare(data):
         compare_list.append([category, name, hex, r_named, g_named, b_named])
     val = 1
     for cols in compare_list:
-        print("%i. Name: %s, Hex Value: %s, R: %i, G: %i, B: %i, Category: %s" % (val, cols[1], cols[2], cols[3], cols[4], cols[5], cols[0]))
+        #print("%i. Name: %s, Hex Value: %s, R: %i, G: %i, B: %i, Category: %s" % (val, cols[1], cols[2], cols[3], cols[4], cols[5], cols[0]))
         val += 1
-    return compare_list             # [category, name, hex, r-val, g-val, b-val]
+    return compare_list, RdiffTotal, GdiffTotal, BdiffTotal          # [category, name, hex, r-val, g-val, b-val]
     
 def color_extrapolate(image, data):
     #-------------------------------------------------------------------------------------------------------------------------------#
@@ -210,6 +227,13 @@ def color_extrapolate(image, data):
     #"""
     cv2.waitKey(0)
     
+def getColorDisability():
+
+
+
+    return
+
+
 def main():
     # constructing and using arugment parse (chpt. 3)
     ap = argparse.ArgumentParser()
@@ -221,10 +245,54 @@ def main():
     cv2.imshow("Original", image)
     # cv2.waitKey(0)
 
+    # assigning and masking color 1
+    # converting to HSV colorspace
+    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)                            # converting image to the HSV color space (chpt. 6)
+    
     data = color_palette(image)
     print(data)
-    frequent = color_compare(data)
+    frequent_data, RdiffTotal, GdiffTotal, BdiffTotal = color_compare(data)
     
-    color_extrapolate(image, data)
+    #color_extrapolate(image, data)
+
+    greenFiltered = cv2.imread(args["image"])
+
+    redFiltered = cv2.imread(args["image"])
+
+    for color in frequent_data:
+        print(color)
+        #if color[1] == "Shades of Black and Gray (see also Gray vs Grey)":
+
+        #elif color[1] == "Shades of Blue":
+
+        #elif color[1] == "Shades of Brown":
+
+        if color[0] == "Shades of Green":
+            
+            low_green = np.array([int(color[3]), int(color[4])-10, int(color[5])])
+            print(color[3], color[4], color[5])
+            high_green = np.array([int(color[3]), int(color[4])+10, int(color[5])])
+            green_mask = cv2.inRange(image, (color[3], color[4], color[5]), (color[3], color[4], color[5]))
+            green = cv2.bitwise_and(image, image, mask = green_mask)
+            cv2.imshow("Green Mask", green_mask)
+            cv2.imshow("Green", green)
+            cv2.waitKey(0)
+            
+            greenFiltered[green_mask > 0] = (0, 0, 0)
+
+        #elif color[1] == "Shades of Orange":
+
+        #elif color[1] == "Shades of Red":
+
+        #elif color[1] == "Shades of Violet":
+
+        #elif color[1] == "Shades of White":
+
+        #elif color[1] == "Shades of Yellow":
+
+    cv2.imshow("Green Filter", image)
+    cv2.waitKey(0)
+
+    print(RdiffTotal, BdiffTotal, GdiffTotal)
 
 main()
