@@ -12,7 +12,7 @@ if color_search == "green" or color_search == "Green":
     withGreenOverlay = cv2.bitwise_and(image, greenOverlay)
     withBothOverlays = cv2.bitwise_and(withGreenOverlay, redOverlay)
 
-    cv2.imshow("final", withBothOverlays)
+    #cv2.imshow("final", withBothOverlays)
 
     image[green_mask > 0] = (255, 0, 0)
     image[gray_mask > 0] = (255, 0, 0)
