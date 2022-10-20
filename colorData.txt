@@ -1,5 +1,5 @@
 Shades of Black and Gray (see also Gray vs Grey), Grey, 545454, 84, 84, 84 
-Shades of Black and Gray (see also Gray vs Grey), Grey, C0C0C0, 192, 192, 192 
+Shades of Black and Gray (see also Gray vs Grey), Silver, C0C0C0, 192, 192, 192 
 Shades of Black and Gray (see also Gray vs Grey), grey, BEBEBE, 190, 190, 190 
 Shades of Black and Gray (see also Gray vs Grey), LightGray, D3D3D3, 211, 211, 211 
 Shades of Black and Gray (see also Gray vs Grey), LightSlateGrey, 778899, 119, 153, 136 
